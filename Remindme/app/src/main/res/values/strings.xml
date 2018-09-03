@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Remindme</string>
+
+    <string name="add_alarm">+Add Alarm</string>
+
+    <string-array name="options">
+        <item>off</item>
+        <item>on</item>
+    </string-array>
+</resources>
