@@ -37,18 +37,24 @@
                 android:src="@drawable/ic_memo_icon" />
         </LinearLayout>
 
-        <ScrollView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="381dp">
-
-        </ScrollView>
-
-        <Button
-            android:id="@+id/addAlarm"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:backgroundTint="@color/buttonColor"
-            android:text="@string/add_alarm"
-            android:textColor="@android:color/white" />
+            android:layout_height="fill_parent">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <com.kubuni.test.remindme.AlarmSlot
+                    android:layout_width = "350dp"
+                    android:layout_height = "400dp"/>
+            </ScrollView>
+            <Button
+                android:id="@+id/addAlarm"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:backgroundTint="@color/buttonColor"
+                android:text="@string/add_alarm"
+                android:textColor="@android:color/white" />
+        </FrameLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
