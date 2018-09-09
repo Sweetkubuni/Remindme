@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
@@ -16,8 +17,30 @@ import android.view.View;
 public class AlarmSlot extends View {
 
     String TimeStr;
-    public AlarmSlot(Context context){
-        super(context, null);
+
+    public AlarmSlot(Context context) {
+        super(context);
+    }
+
+    public AlarmSlot(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public AlarmSlot(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+    }
+
+    private void DrawCenterText(Canvas canvas, Paint paint, String text)
+    {
+        Rect r = new Rect();
+        canvas.getClipBounds(r);
+        int cHeight = r.height();
+        int cWidth = r.width();
+        paint.setTextAlign(Paint.Align.LEFT);
+        paint.getTextBounds(text, 0, text.length(), r);
+        //float x = cWidth / 2f - r.width() / 2f - r.left;
+        float y = cHeight / 2f + r.height() / 2f - r.bottom;
+        canvas.drawText(text, 30, y, paint);
     }
 
 
@@ -36,10 +59,13 @@ public class AlarmSlot extends View {
         BackgroundColor.setColor(Color.WHITE);
 
         Paint TextColor = new Paint(Paint.ANTI_ALIAS_FLAG);
-        TextColor.setColor(Color.LTGRAY);
-        canvas.drawRoundRect(Background, 0.4f, 0.4f, BackgroundColor);
+        TextColor.setColor(Color.DKGRAY);
+        TextColor.setTextSize(50);
+        canvas.drawRoundRect(Background, 10, 10, BackgroundColor);
 
         TimeStr = new String("12:00 PM");
-        canvas.drawText(TimeStr, 200, 200, TextColor);
+        DrawCenterText(canvas, TextColor, TimeStr);
+        //int yPos = (int) ((canvas.getHeight() / 2) - ((TextColor.descent() + TextColor.ascent()) / 2)) ;
+        //canvas.drawText(TimeStr, 10, yPos, TextColor);
     }
 }
